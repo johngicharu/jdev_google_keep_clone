@@ -1,13 +1,31 @@
 import React from "react";
-import { Card, NoteTitle } from "../styles/GlobalStyles";
+import { NoteCard } from "../styles/NotesStyles";
+import NoteContent from "./NoteContent";
+import Title from "./Title";
+import NoteActions from "./NoteActions";
+import { NoteType } from "../global";
 
-const Note = ({ note }: { note: { title: string; content: string } }) => {
-  return (
-    <Card>
-      <NoteTitle>{note.title}</NoteTitle>
-      <p>{note.content}</p>
-    </Card>
-  );
+type NoteProps = {
+	note: NoteType;
+	setNoteActive: (note: NoteType) => void;
+};
+
+const Note = ({ note, setNoteActive }: NoteProps) => {
+	const makeActive = (note: NoteType) => {
+		return setNoteActive(note);
+	};
+
+	return (
+		<NoteCard onClick={() => makeActive(note)} className="ignore">
+			<Title noteTitle={note.title} active={false} />
+			<NoteContent active={false} displayedNote noteContent={note.content} />
+			<NoteActions
+				handleStartEdit={e => setNoteActive(note)}
+				id={note.title}
+				active={false}
+			/>
+		</NoteCard>
+	);
 };
 
 export default Note;

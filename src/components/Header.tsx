@@ -1,8 +1,13 @@
 import React from "react";
-import { StyledHeader } from "../styles/HeaderStyles";
+import { StyledHeader, ToggleTheme, SiteTitle } from "../styles/HeaderStyles";
 
 const Header = () => {
-  return <StyledHeader>Jdev Google Keep Clone</StyledHeader>;
+  return (
+    <StyledHeader>
+      <SiteTitle>Jdev Google Keep Clone</SiteTitle>
+      <ToggleTheme>Switch</ToggleTheme>
+    </StyledHeader>
+  );
 };
 
 export default Header;

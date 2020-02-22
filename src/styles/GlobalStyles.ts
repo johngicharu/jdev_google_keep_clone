@@ -1,19 +1,21 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { ThemeType } from "./theme";
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
 * {
   box-sizing: border-box;
   margin: 0;
 } 
+
 html, body {
   font-weight: 300;
   line-height: 1.3;
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fonts.fontSize};
   margin: 0;
-  font-family: Sf Pro Display, 'Roboto', 'Helvetica Neue',
-    sans-serif;
+  font-family: ${({ theme }) => theme.fonts.fontFamily};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: ${({ theme }) => theme.colors.backgroundColor};
 }
 
 code {
@@ -22,23 +24,42 @@ code {
 }
 `;
 
+export const Button = styled.button<{ filled?: boolean }>`
+	padding: 0.5em 0.8em;
+	border-radius: 4px;
+	color: ${({ filled, theme }) => (filled ? "#fffffe" : theme.colors.dark)};
+	background-color: ${({ theme, filled }) =>
+		filled ? theme.colors.primary : "none"};
+	border: ${({ filled, theme }) =>
+		filled ? "none" : `1px solid ${theme.colors.primary}`};
+	margin: 0.2em 0.3em;
+	font-family: ${({ theme }) => theme.fonts.fontFamily};
+	cursor: pointer;
+`;
+
 export const Container = styled.div`
-  max-width: 1300px;
-  width: 90%;
-  margin: 0 auto;
+	max-width: 1300px;
+	width: 90%;
+	margin: 0 auto;
+	position: relative;
 `;
 
 export const Card = styled.div`
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0.5em 1em;
-  cursor: pointer;
-  &:hover {
-    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.3);
-  }
+	border-radius: ${({ theme }) => theme.borderRadius};
+	padding: 0.5em 1em;
+	cursor: pointer;
+	background-color: ${({ theme }) => theme.colors.main};
+
+	&:hover {
+		box-shadow: ${({ theme }) => theme.boxShadow};
+	}
 `;
 
-export const NoteTitle = styled.h4`
-  font-size: 1.1em;
-  font-weight: 400;
+export const Backdrop = styled.div`
+	position: fixed;
+	top: 0%;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.8);
 `;
