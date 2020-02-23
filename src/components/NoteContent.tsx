@@ -25,7 +25,9 @@ const NoteContent = ({
 					? ""
 					: "Take a note"
 			}
-			value={noteContent.trim() !== "" ? noteContent : ""}
+			
+			defaultValue={noteContent.trim() !== "" ? noteContent : ""}
+			
 			onChange={onChangeHandler}
 			className="ignore"
 		/>

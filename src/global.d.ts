@@ -8,4 +8,5 @@ export type GlobalState = {
   activeNote: null | NoteType;
   notes: NoteType[];
   addingNote: boolean;
+  darkThemeActive: boolean;
 };

@@ -11,7 +11,7 @@ export const NoteContentStyles = styled.textarea<{ active: boolean }>`
 	resize: none;
 	padding: 0.5em 0.5em 0.5em 0.5em;
 	pointer-events: ${({ active }) => (active ? "all" : "none")};
-	/* outline: none; */
 	min-height: 30px;
 	height: auto;
+	color: ${({theme}) => theme.colors.cardTextColor};
 `;

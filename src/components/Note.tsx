@@ -12,7 +12,7 @@ type NoteProps = {
 
 const Note = ({ note, setNoteActive }: NoteProps) => {
 	const makeActive = (note: NoteType) => {
-		return setNoteActive(note);
+		 setNoteActive(note);
 	};
 
 	return (
@@ -20,7 +20,7 @@ const Note = ({ note, setNoteActive }: NoteProps) => {
 			<Title noteTitle={note.title} active={false} />
 			<NoteContent active={false} displayedNote noteContent={note.content} />
 			<NoteActions
-				handleStartEdit={e => setNoteActive(note)}
+				handleStartEdit={() => makeActive(note)}
 				id={note.title}
 				active={false}
 			/>

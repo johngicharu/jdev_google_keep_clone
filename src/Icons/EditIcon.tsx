@@ -7,7 +7,7 @@ const EditIcon = ({
   eventHandler: (e: React.MouseEvent) => void;
 }) => {
   return (
-    <Icon onClick={eventHandler} position={"right"}>
+    <Icon onClick={() => eventHandler} position={"right"}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"

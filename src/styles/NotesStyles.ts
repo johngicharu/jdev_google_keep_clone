@@ -7,7 +7,7 @@ export const NotesList = styled.div`
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	grid-gap: 0.5em;
 	padding: 0.5em;
-	margin: 0 auto;
+	margin: 1.2em auto;
 `;
 
 export const NoteCard = styled(Card)`
@@ -62,16 +62,25 @@ export const CustomNoteButton = styled(Button)<{ position: string }>`
 	bottom: 0;
 `;
 
-export const Icon = styled.a<{ position: string }>`
-	position: absolute;
-	left: ${({ position }) => (position === "left" ? "5%" : "")};
-	right: ${({ position }) => (position === "right" ? "5%" : "")};
+export const Icon = styled.a<{ position?: string; darkThemeActive?: boolean; }>`
+	position: ${({position}) => position ? "absolute" : "static"};
+	left: ${({ position }) => (position === "left" ? "5%" : position === "center" ? "50%" : "")};
+	right: ${({ position }) => (position === "right" ? "5%" : position === "center" ? "50%" : "")};
+	${({position}) => position === "center" && `transform: translate(-50%, -50%);`}
 	bottom: 0;
 	text-decoration: none;
 	color: inherit;
 
+	&.offIcon {
+		display: ${({darkThemeActive}) => darkThemeActive ? "none" : "block"};
+	}
+
+	&.onIcon {
+		display: ${({darkThemeActive}) => darkThemeActive ? "block" : "none"};
+	}
+
 	svg {
-		fill: ${({ theme }) => theme.colors.dark};
+		fill: ${({ theme }) => theme.colors.cardTextColor};
 	}
 
 	&:hover {

@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import AddNote from "./components/AddNote";
 import Notes from "./components/Notes";
 import { GlobalStyles, Container, Backdrop } from "./styles/GlobalStyles";
-import theme from "./styles/theme";
+import {darkTheme, lightTheme} from "./styles/theme";
 import { GlobalState, NoteType } from "./global";
 import ActiveNote from "./components/ActiveNote";
 
@@ -12,16 +12,20 @@ class App extends React.Component {
 	state: GlobalState = {
 		activeNote: null,
 		addingNote: false,
+		darkThemeActive: false,
 		notes: [
-			{
-				id: "1",
-				title: "Note 1",
-				content: "Note content"
-			}
 		]
 	};
 
 	componentDidMount() {
+		const appData = localStorage.getItem("jdev-google-keep");
+
+		if (appData) {
+			this.setState({...JSON.parse(appData)})
+		} else {
+			localStorage.setItem("jdev-google-keep", JSON.stringify({darkThemeActive: this.state.darkThemeActive, notes: this.state.notes}));
+		}
+
 		window.addEventListener("click", e => {
 			if (!(e.target as HTMLElement).classList.contains("ignore")) {
 				!(e.target as HTMLElement).classList.contains("addNote") &&
@@ -30,8 +34,19 @@ class App extends React.Component {
 		});
 	}
 
+	componentDidUpdate() {
+		const stringifiedState = JSON.stringify({
+			darkThemeActive: this.state.darkThemeActive,
+			notes: this.state.notes
+		});
+		const appData = localStorage.getItem("jdev-google-keep");
+		if (!appData || stringifiedState.length !== appData.length) {
+			localStorage.setItem("jdev-google-keep", stringifiedState);
+		}
+	}
+
 	setNoteActive = (note: NoteType | null) => {
-		this.setState({ ...this.state, activeNote: note });
+		this.setState({ ...this.state, activeNote: note, addingNote: false });
 	};
 
 	setAddingNote = (addingNote: boolean) => {
@@ -58,20 +73,29 @@ class App extends React.Component {
 		this.setState({ notes: this.state.notes.filter(note => note.id !== id) });
 	};
 
+	switchTheme = () => {
+		this.setState({darkThemeActive: !this.state.darkThemeActive})
+	}
+
 	render() {
-		const { notes, activeNote, addingNote } = this.state;
+		const { notes, activeNote, addingNote, darkThemeActive } = this.state;
 
 		return (
-			<ThemeProvider theme={theme}>
+			<ThemeProvider theme={darkThemeActive ? darkTheme : lightTheme}>
 				<Container>
 					<GlobalStyles />
-					<Header />
+					<Header switchTheme={this.switchTheme} darkThemeActive={darkThemeActive} />
 					<AddNote
 						setAddingNote={this.setAddingNote}
 						addingNote={addingNote}
 						addNote={this.addNote}
 					/>
-					<Notes notes={notes} setNoteActive={this.setNoteActive} />
+					{
+						notes.length > 0 ?
+						<Notes notes={notes} setNoteActive={this.setNoteActive} />
+						: <p>Your Notes will appear here</p>
+
+					}
 					{this.state.activeNote && (
 						<>
 							<ActiveNote

@@ -15,7 +15,7 @@ const Title = ({ noteTitle, active, onChangeHandler }: TitleProps) => {
 			active={active}
 			onChange={onChangeHandler}
 			placeholder={noteTitle.trim() !== "" ? "" : "Title"}
-			value={noteTitle.trim() !== "" ? noteTitle : ""}
+			defaultValue={noteTitle.trim() !== "" ? noteTitle : ""}
 			className="ignore"
 		/>
 	);

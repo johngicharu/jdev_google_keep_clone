@@ -15,12 +15,22 @@ html, body {
   font-family: ${({ theme }) => theme.fonts.fontFamily};
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: ${({ theme }) => theme.colors.backgroundColor};
+	background-color: ${({ theme }) => theme.colors.backgroundColor};
+	color: ${({theme}) => theme.colors.textColor};
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p {
+	text-align: center;
+	margin: 1em auto;
+	font-weight: 300;
+	opacity: 0.8;
+	font-size: 0.9em;
+	color: ${({theme}) => theme.colors.cardTextColor};
 }
 `;
 
@@ -47,8 +57,9 @@ export const Container = styled.div`
 export const Card = styled.div`
 	border-radius: ${({ theme }) => theme.borderRadius};
 	padding: 0.5em 1em;
+	color: ${({theme}) => theme.colors.cardTextColor};
 	cursor: pointer;
-	background-color: ${({ theme }) => theme.colors.main};
+	background-color: ${({ theme }) => theme.colors.cardBackground};
 
 	&:hover {
 		box-shadow: ${({ theme }) => theme.boxShadow};
