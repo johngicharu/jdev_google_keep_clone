@@ -55,7 +55,6 @@ const ActiveNote = ({
 			<NoteActions
 				handleDelete={handleDelete}
 				handleDoneEdit={handleDoneEdit}
-				id={note.title}
 				active={true}
 			/>
 		</ActiveNoteCard>

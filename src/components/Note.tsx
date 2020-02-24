@@ -21,7 +21,6 @@ const Note = ({ note, setNoteActive }: NoteProps) => {
 			<NoteContent active={false} displayedNote noteContent={note.content} />
 			<NoteActions
 				handleStartEdit={() => makeActive(note)}
-				id={note.title}
 				active={false}
 			/>
 		</NoteCard>

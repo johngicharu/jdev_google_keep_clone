@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
 * {
   box-sizing: border-box;
   margin: 0;
+	transition: all 300ms ease-in-out;
 } 
 
 html, body {

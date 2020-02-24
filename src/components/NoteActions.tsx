@@ -4,7 +4,6 @@ import EditIcon from "../Icons/EditIcon";
 import { NoteActionsStyles, CustomNoteButton } from "../styles/NotesStyles";
 
 type NoteActionsProps = {
-	id: string;
 	active: boolean;
 	handleDelete?: (e: React.MouseEvent) => void;
 	handleDoneEdit?: (e: React.MouseEvent) => void;
@@ -12,7 +11,6 @@ type NoteActionsProps = {
 };
 
 const NoteActions = ({
-	id,
 	active,
 	handleDelete,
 	handleDoneEdit,

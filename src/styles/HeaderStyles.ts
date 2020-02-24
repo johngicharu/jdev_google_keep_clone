@@ -13,8 +13,12 @@ export const SiteTitle = styled.h3`
   top: 50%;
   left: 5%;
   transform: translate(-5%, -50%);
-  font-weight: 300;
   font-size: 1.3em;
+  font-weight: 500;
+  
+  @media screen and (max-width: 550px) {
+    font-size: 1em;
+  }
 `;
 
 export const ToggleTheme = styled.a`
@@ -37,5 +41,10 @@ export const ToggleTheme = styled.a`
   span {
     display: block;
     margin: 0 0.3em 0 0;
+
+
+    @media screen and (max-width: 550px) {
+      display: none;
+    }
   }
 `;

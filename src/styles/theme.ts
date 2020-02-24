@@ -14,7 +14,7 @@ export const lightTheme = {
 		primary: "#fc5185", // Pink
 		cardBackground: "#fffffe",
 		cardTextColor: "#303a52",
-		backgroundColor: "#f0f0f0", // Grey
+		backgroundColor: "#f4f4f4", // Grey
 		textColor: "#303a52" // Dark Blue
 	},
 	...common
